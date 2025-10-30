@@ -1,0 +1,1 @@
+import{j as r}from"./jsx-runtime.D_zvdyIk.js";import{A as o}from"./AuthContext.CZXfV5hM.js";import{N as t}from"./Hearders.DjAoprwZ.js";import"./index.Cd_vQiNd.js";function e(){return r.jsx(o,{children:r.jsx(t,{})})}export{e as default};

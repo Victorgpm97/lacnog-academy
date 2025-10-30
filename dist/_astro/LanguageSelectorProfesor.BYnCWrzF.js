@@ -1,0 +1,1 @@
+import{default as d}from"./LanguageSelectorProfesor.it-4Sa3d.js";import"./jsx-runtime.D_zvdyIk.js";import"./index.Cd_vQiNd.js";import"./createLucideIcon.VU73Mjqq.js";import"./circle-check-big.DfyBcPjJ.js";import"./chevron-down.JzAS3cxM.js";import"./x.H-gOfDtk.js";import"./user-round-pen.D5BcB2A9.js";export{d as default};
