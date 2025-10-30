@@ -1,0 +1,40 @@
+---
+import type { GetStaticPaths } from "astro";
+import CourseContent from "../LACNOG/src/components/CourseContent";
+import { areas } from "../../../components/AreaSelector.tsx";
+import { languages } from "../../../components/LanguageSelector.tsx";
+import Hearder from '../../../components/Hearder.astro';
+import Layout from '../../../layouts/Layout.astro';
+
+
+// ✅ Tipamos correctamente
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = [];
+
+  for (const area of areas) {
+    for (const lang of languages) {
+      paths.push({
+        params: { area: area.id, lang: lang.id },
+      });
+    }
+  }
+
+  return paths;
+};
+
+const { area, lang } = Astro.params as { area: string; lang: string };
+---
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ruta de aprendizaje: {area} - {lang}</title>
+  </head>
+  <body>
+    <Layout>
+      <Hearder/>
+      <CourseContent client:load areaId={area} langId={lang} />
+  </Layout>
+  </body>
+</html>
+
+
