@@ -1,2 +1,8 @@
+ignoredBuiltDependencies:
+  - '@parcel/watcher'
+  - '@tailwindcss/oxide'
+  - esbuild
+  - sharp
+
 onlyBuiltDependencies:
   - better-sqlite3
