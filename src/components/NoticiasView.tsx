@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FeaturedSection from "../components/FeaturedSection";
 
 const DashboardPage: React.FC = () => {
   const [activeTag, setActiveTag] = useState<string | null>(null);
+  const [userRole, setUserRole] = useState<string | null>(null);
+
+  useEffect(() => {
+    const storedRole = localStorage.getItem("userRole");
+    setUserRole(storedRole);
+  }, []);
 
   const articles = [
     {
@@ -10,7 +16,7 @@ const DashboardPage: React.FC = () => {
       titulo: "Unveiling ChatGPT for Government: A Prompt Pack for Republic of Singapore GovTech",
       resumen: "Descubre cómo Singapore GovTech está aprovechando ChatGPT para innovar en el sector público.",
       articulo:
-        "El gobierno de Singapur, a través de su agencia GovTech, ha lanzado un paquete de prompts diseñado específicamente para mejorar la interacción entre ciudadanos y servicios públicos mediante ChatGPT. Este conjunto de herramientas permite a los funcionarios automatizar respuestas, generar informes y asistir en tareas administrativas con mayor eficiencia. La iniciativa busca reducir la carga operativa y mejorar la experiencia del usuario en trámites digitales.",
+        "El gobierno de Singapur, a través de su agencia GovTech, ha lanzado un paquete de prompts diseñado específicamente para mejorar la interacción entre ciudadanos y servicios públicos mediante ChatGPT...",
       imagen: "/img/govtech.jpg",
       tags: ["Privacy Policy", "Ethics and Compliance"],
     },
@@ -19,7 +25,7 @@ const DashboardPage: React.FC = () => {
       titulo: "Unveiling ChatGPT for Government: A Prompt Pack for Locatrix",
       resumen: "Explora cómo Locatrix integra ChatGPT en sus flujos cívicos.",
       articulo:
-        "Locatrix ha incorporado ChatGPT en sus procesos para mejorar la comunicación entre ciudadanos y autoridades locales. El paquete de prompts desarrollado permite generar respuestas automáticas a consultas frecuentes, asistir en la planificación de evacuaciones y facilitar la capacitación de personal en tiempo real.",
+        "Locatrix ha incorporado ChatGPT en sus procesos para mejorar la comunicación entre ciudadanos y autoridades locales...",
       imagen: "/img/locatrix.jpg",
       tags: ["Terms", "Cookie Policy"],
     },
@@ -28,7 +34,7 @@ const DashboardPage: React.FC = () => {
       titulo: "Aligned Procurement Strategy for Government Teams using ChatGPT Integration",
       resumen: "ChatGPT apoya la alineación de compras públicas con herramientas potenciadas por IA.",
       articulo:
-        "La estrategia de compras públicas está siendo transformada por la integración de ChatGPT en equipos gubernamentales. Mediante prompts especializados, los funcionarios pueden redactar solicitudes de propuestas, comparar proveedores y generar reportes de evaluación con mayor rapidez y precisión.",
+        "La estrategia de compras públicas está siendo transformada por la integración de ChatGPT en equipos gubernamentales...",
       imagen: "/img/procurement.jpg",
       tags: ["Intellectual Property Policy", "Ethics and Compliance"],
     },
@@ -37,7 +43,7 @@ const DashboardPage: React.FC = () => {
       titulo: "Crafting Success with ChatGPT: Listings Law Enforcement Deployment",
       resumen: "Cómo agencias de seguridad están desplegando ChatGPT para mejorar operaciones.",
       articulo:
-        "Las fuerzas de seguridad están adoptando ChatGPT como herramienta de apoyo operativo. Desde la redacción de informes hasta la simulación de escenarios tácticos, el modelo de lenguaje permite a los agentes ahorrar tiempo y mejorar la precisión en sus tareas.",
+        "Las fuerzas de seguridad están adoptando ChatGPT como herramienta de apoyo operativo...",
       imagen: "/img/law-enforcement.jpg",
       tags: ["Privacy Policy", "Terms"],
     },
@@ -91,12 +97,14 @@ const DashboardPage: React.FC = () => {
         <section className="w-full py-12 px-6">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl font-bold text-[#FE9E1B]">Noticias</h2>
-            <a
-              href="/crear-noticias"
-              className="bg-[#FE9E1B] text-white px-4 py-2 rounded hover:bg-[#FEA723] transition text-sm font-medium"
-            >
-              Crear Nueva Noticia
-            </a>
+            {userRole === "profesor" && (
+              <a
+                href="/crear-noticias"
+                className="bg-[#FE9E1B] text-white px-4 py-2 rounded hover:bg-[#FEA723] transition text-sm font-medium"
+              >
+                Crear Nueva Noticia
+              </a>
+            )}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredArticles.map((article) => (
