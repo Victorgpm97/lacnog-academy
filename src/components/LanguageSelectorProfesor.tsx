@@ -4,6 +4,43 @@ import TemaView from "../components/TemaView";
 import ModalRolSelector from "./ModalRolSelector";
 //import PrepararTemaView from "./PrepararTemaView";
 import { temas } from "../data/temas";
+import Lacnog from "../logos/Logo-LACNOG-1-300x154.png";
+import ProfesorIntroCard from "../components/tutoria/ProfesorIntroCard";
+
+// Metadatos de cada módulo
+const temaMetadata: Record<number, { titulo: string; subtitulo: string; modulo: string, tiempo: string, prerequisitos: string }> = {
+  1: {
+    modulo: "Modulo 1",
+    titulo: "Instructor Guide for Unicode Basics",
+    subtitulo: "Provide the basic understanding of Unicode and its applications.",
+    tiempo: "180 min",
+    prerequisitos: "Data types and data representations. ASCII encoding. ASCII input and output. ASCII files."
+  },
+  2: {
+    modulo: "Modulo 2",
+    titulo: "Unicode Advanced Programming",
+    subtitulo:
+      "Designed to expand your understanding and proficiency in working with Unicode by covering key aspects such as the character-glyph model, Unicode normalization, accessing the Unicode character database, and comparing Unicode strings.",
+    tiempo: "300 min",
+    prerequisitos: "Module 1, Advanced/ Object OrientedProgramming."
+  },
+  3: {
+    modulo: "Modulo 3",
+    titulo: "Unicode in Data Structures and Algorithms",
+    subtitulo:
+      "Comprehensive introduction to leveraging the power of Unicode in data structures and algorithms.",
+    tiempo: "180 min",
+    prerequisitos: "Modulo 2, Arrays, Lists, Sets, Queues, Trees, Dictionaries, etc., Sorting and Searching."
+  },
+  4: {
+    modulo: "Modulo 4",
+    titulo: "Unicode in Database Systems",
+    subtitulo:
+      "Concise introduction to the essential concepts and considerations when working with Unicode character data in the context of database systems.",
+    tiempo: "120 min",
+    prerequisitos: "Modulo 2,Unicode searching. SQL."
+  },
+};
 
 export default function LanguageSelector() {
   const [role, setRole] = useState<"profesor" | "estudiante" | null>(null);
@@ -11,6 +48,8 @@ export default function LanguageSelector() {
   const [viewingCourse, setViewingCourse] = useState<number | null>(null);
   const [showRolModal, setShowRolModal] = useState(false);
   const [temasDisponibles, setTemasDisponibles] = useState<number[]>([]);
+  const [mostrarIntroProfesor, setMostrarIntroProfesor] = useState(false);
+
 
   // Cargar rol y lista de temas desde localStorage
   useEffect(() => {
@@ -54,7 +93,7 @@ export default function LanguageSelector() {
     setPreparandoTema({ tema: nuevo }); // redirige directo a PrepararTemaView
   };
 
-    // Vista de CourseView (estudiante)
+  // Vista de TemaView (profesor preparando tema)
   if (preparandoTema) {
     return (
       <TemaView
@@ -68,20 +107,6 @@ export default function LanguageSelector() {
     );
   }
 
-  // Vista de PrepararTema (profesor)
-//  if (preparandoTema) {
-//    return (
-//      <PrepararTemaView
-//        tema={preparandoTema.tema}
-//        onBack={() => setPreparandoTema(null)}
-//        onDeleteTema={(temaId) => {
-//          setTemasDisponibles((prev) => prev.filter((t) => t !== temaId));
-//          setPreparandoTema(null);
-//        }}
-//      />
-//    );
-//  }
-
   // Vista de CourseView (estudiante)
   if (viewingCourse !== null) {
     return (
@@ -93,97 +118,136 @@ export default function LanguageSelector() {
     );
   }
 
+  if (mostrarIntroProfesor) {
+    return <ProfesorIntroCard onBack={() => setMostrarIntroProfesor(false)} />;
+  }
+
+
   return (
-    <div className="bg-white p-6 rounded-lg max-w-6xl mx-auto mt-10">
-      {/* Modal de rol */}
-      {showRolModal && (
-        <ModalRolSelector
-          onClose={() => setShowRolModal(false)}
-          onSelectRole={handleSelectRole}
-        />
-      )}
+    <>
+      <div className="bg-white p-6 rounded-lg max-w-6xl mx-auto mt-10 mb-16">
+        {/* Modal de rol */}
+        {showRolModal && (
+          <ModalRolSelector
+            onClose={() => setShowRolModal(false)}
+            onSelectRole={handleSelectRole}
+          />
+        )}
 
-      {/* Estadísticas */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-        <div className="bg-amber-100 p-4 rounded-lg shadow-sm">
-          <div className="text-[#FEA723] text-5xl font-bold mb-2">
-            {temasDisponibles.length}
+        {/* Estadísticas */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          <div className="bg-amber-100 p-4 rounded-lg shadow-sm">
+            <div className="text-[#FEA723] text-5xl font-bold mb-2">
+              {temasDisponibles.length}
+            </div>
+            <h3 className="text-lg font-semibold text-gray-700">Temas Disponibles</h3>
           </div>
-          <h3 className="text-lg font-semibold text-gray-700">Temas Disponibles</h3>
-        </div>
-        <div className="bg-amber-100 p-4 rounded-lg shadow-sm">
-          <div className="flex justify-center items-center py-2 gap-4 mb-2">
-            <img src="/logos/java-logo.png" alt="Java" className="w-9 h-9 object-contain" />
-            <img src="/logos/python-logo.png" alt="Python" className="w-9 h-9 object-contain" />
+          <div className="bg-amber-100 p-4 rounded-lg shadow-sm">
+            <div className="flex justify-center items-center py-2 gap-4 mb-2">
+              <img src="/logos/java-logo.png" alt="Java" className="w-9 h-9 object-contain" />
+              <img src="/logos/python-logo.png" alt="Python" className="w-9 h-9 object-contain" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-700">Lenguajes</h3>
           </div>
-          <h3 className="text-lg font-semibold text-gray-700">Lenguajes</h3>
+          <div className="bg-amber-100 p-4 rounded-lg shadow-sm py-8">
+            <img src="/icons/books-stack.png" alt="Formato autoasistido" className="w-8 h-8 mx-auto mb-2" />
+            <h3 className="text-lg font-semibold text-gray-700">Formato autoasistido</h3>
+          </div>
         </div>
-        <div className="bg-amber-100 p-4 rounded-lg shadow-sm py-8">
-          <img src="/icons/books-stack.png" alt="Formato autoasistido" className="w-8 h-8 mx-auto mb-2" />
-          <h3 className="text-lg font-semibold text-gray-700">Formato autoasistido</h3>
+
+        {/* Botón para cambiar rol */}
+        <div className="flex justify-center mt-4">
+          <button
+            onClick={() => setShowRolModal(true)}
+            className="bg-[#FEA723] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#FE9E1B] hover:scale-110 transition-transform duration-300 cursor-pointer"
+          >
+            Cambiar Rol
+          </button>
         </div>
-      </div>
+        {/* Tarjeta especial para profesores */}
+        {role === "profesor" && (
 
-      {/* Botón para cambiar rol */}
-      <div className="flex justify-center mt-4">
-        <button
-          onClick={() => setShowRolModal(true)}
-          className="bg-[#FEA723] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#FE9E1B] hover:scale-110 transition-transform duration-300 cursor-pointer"
-        >
-          Cambiar Rol
-        </button>
-      </div>
+        <div className="flex justify-center mt-10 mb-6">
+          <div className="bg-amber-100 rounded-xl shadow-md p-6 max-w-3xl w-full text-center">
+            <h3 className="text-lg font-medium text-gray-800 mb-2">
+              Introducción para profesores <h3 className="font-semibold">Ruta de aprendizaje sobre Aceptación Universal.</h3> 
+            </h3>
+            <p className="text-sm font-light text-gray-700 mb-4">
+              Propuesta para la Modernización Curricular mediante la Integración de Módulos de Aceptación Universal (UA) desarrollado por el working grupo de UA de LACNOG
+            </p>
+            <button
+              onClick={() => setMostrarIntroProfesor(true)}
+              className="bg-[#FEA723] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#FE9E1B] hover:scale-102 transition-transform duration-300 cursor-pointer"
+            >
+              Ver más
+            </button>
+          </div>
+        </div>
+        )}
 
-      {/* Temas */}
-      {(role === "profesor" || role === "estudiante") ? (
-        <div className="bg-orange-200 rounded-lg shadow-sm mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
-            {temasDisponibles.map((tema) => {
-              // Leer título guardado en localStorage
-              const saved = localStorage.getItem(`preparar-tema-${tema}`);
-              let titulo = `Tema ${tema}`;
-              if (saved) {
-                try {
-                  const parsed = JSON.parse(saved);
-                  if (parsed.titulo) titulo = parsed.titulo;
-                } catch (e) {
-                  console.error("Error leyendo tema", e);
-                }
-              }
+        {/* Temas */}
+        {(role === "profesor" || role === "estudiante") ? (
+          <div className="bg-orange-200 rounded-lg shadow-sm mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
+              {temasDisponibles.map((tema) => {
+                const meta = temaMetadata[tema];
+                let titulo = meta?.titulo || `Tema ${tema}`;
+                let subtitulo =
+                  meta?.subtitulo ||
+                  "Reglas conceptuales fundamentales y desarrollo e implementación de procesos de aprendizaje.";
+                let tiempo = meta?.tiempo || "No hay tiempo";
+                let prerequisitos = meta?.prerequisitos || "No hay pre-requisitos";
+                let modulo = meta?.modulo;
 
-              return (
-                <div
-                  key={tema}
-                  className="bg-amber-50 rounded-lg p-4 flex flex-col justify-between hover:scale-102 -translate-y-1 transition-transform animate-slide-up duration-300 cursor-pointer"
-                >
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">{titulo}</h3>
-                  <p className="text-sm text-gray-600 mb-4">
-                    Reglas conceptuales fundamentales y desarrollo e implementación de procesos de aprendizaje.
-                  </p>
-                  <button
-                    onClick={() => handleTemaClick(tema)}
-                    className="bg-[#FEA723] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#FE9E1B] hover:scale-102 transition-transform duration-300 cursor-pointer"
+                return (
+                  <div
+                    key={tema}
+                    className="bg-amber-50 rounded-lg p-4 flex flex-col justify-between hover:scale-102 -translate-y-1 transition-transform animate-slide-up duration-300 cursor-pointer"
                   >
-                    {role === "profesor" ? "Comenzar Recorrido" : "Ver Tema"}
-                  </button>
-                </div>
-              );
-            })}
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center">{modulo} - <span>{titulo}</span></h3>
+                    <p className="text-sm text-gray-600 mb-2">{subtitulo}</p>
+                    {role === "profesor" && (
+                      <>
+                        <p className="text-sm text-gray-600 mb-1 font-semibold">Tiempo Estimado: <span className="text-blue-500 font-bold">{tiempo}</span></p>
+                        <p className="font-light">{prerequisitos}</p>
+                      </>
+                    )}
+                    <button
+                      onClick={() => handleTemaClick(tema)}
+                      className="bg-[#FEA723] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#FE9E1B] hover:scale-102 transition-transform duration-300 cursor-pointer"
+                    >
+                      Ver detalles
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          <div className="text-center text-gray-500 mt-6">Cargando rol…</div>
+        )}
+
+        {/* Botón Agregar Tema (solo profesor) */}
+        {role === "profesor" && (
+          <button
+            onClick={handleAgregarTema}
+            className="text-[#FEA723] px-6 py-2 mt-6 rounded-md font-medium hover:text-[#FE9E1B] transition cursor-pointer hidden"
+          >
+            + Agregar Tema
+          </button>
+        )}
+      </div>
+    <footer className="bg-[#323232] text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="flex items-center justify-center space-x-3 mb-6">
+            <img src={Lacnog.src} alt="" className="w-35 h-20"/>
+          </div>
+          <p className="text-gray-400 mb-6">Proyecto apoyado por LACNOG - Grupo de operadores de Redes de Latinoamérica y el Caribe</p>
+          <div className="border-t border-gray-700 pt-6">
+            <p className="text-gray-500">© 2024 Academy. Todos los derechos reservados.</p>
           </div>
         </div>
-      ) : (
-        <div className="text-center text-gray-500 mt-6">Cargando rol…</div>
-      )}
-
-      {/* Botón Agregar Tema (solo profesor) */}
-      {role === "profesor" && (
-        <button
-          onClick={handleAgregarTema}
-          className="text-[#FEA723] px-6 py-2 mt-6 rounded-md font-medium hover:text-[#FE9E1B] transition cursor-pointer hidden"
-        >
-          + Agregar Tema
-        </button>
-      )}
-    </div>
+      </footer>
+    </>
   );
 }

@@ -14,7 +14,7 @@ const [selectedSpeaker, setSelectedSpeaker] = useState<Speaker | null>(null);
         <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
           {/* Encabezado */}
           <div className="flex items-center gap-4 mb-6">
-            <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${evento.fondo} flex items-center justify-center text-white`}>
+            <div className={`w-16 h-16 rounded-xl bg-linear-to-br ${evento.fondo} flex items-center justify-center text-white`}>
               {evento.icono === "brain" ? <Brain size={30} /> : <Users size={30} />}
             </div>
             <div>
@@ -64,7 +64,7 @@ const [selectedSpeaker, setSelectedSpeaker] = useState<Speaker | null>(null);
         </div>
 
         {/* Columna lateral */}
-        <div className={`bg-gradient-to-br ${evento.fondo} text-white rounded-2xl shadow-md p-6 flex flex-col justify-between`}>
+        <div className={`bg-linear-to-br ${evento.fondo} text-white rounded-2xl shadow-md p-6 flex flex-col justify-between`}>
           <div className="space-y-4 text-sm">
             <div className="flex items-center gap-2">
               <CalendarDays size={18} />

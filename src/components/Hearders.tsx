@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { navLinks } from "../components/NavLink";
+import logo from "../logos/Proyecto_nuevo.png"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,10 +11,7 @@ export default function Navbar() {
         <div className="flex flex-wrap justify-between items-center h-auto md:h-16 py-4 md:py-0">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-[#FEA723] rounded-xl shadow-md flex items-center justify-center">
-              <span className="text-white font-bold text-lg">A</span>
-            </div>
-            <span className="text-2xl font-bold text-[#323232]">Academy</span>
+					  <a href="/"><img src={logo.src} alt="" height={50} width={100} /></a>
           </div>
 
           {/* Hamburger Button */}
@@ -50,16 +48,16 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6" aria-label="Main navigation">
-            <ul className="flex space-x-4">
+            <ul className="flex space-x-2">
               {navLinks.map(link => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-[#4E5059] hover:text-[#323232] font-medium transition-colors duration-200 relative group px-4 py-2"
-                  >
-                    {link.name}
-                    <span className="absolute -bottom-1 left-4 w-0 h-0.5 bg-[#FEA723] transition-all duration-200 group-hover:w-8"></span>
-                  </a>
+                <li key={link.name} className="px-4">
+                    <a
+                      href={link.href}
+                      className="flex items-center gap-x-2 text-[#4E5059] hover:text-[#323232] gap-2 font-medium transition-colors duration-200 relative group py-2 text-sm"
+                    > {link.icon}
+                      <span>{link.name}</span>
+                      <span className="absolute -bottom-1 left-4 w-0 h-0.5 bg-[#FEA723] transition-all duration-200 group-hover:w-8"></span>
+                    </a>
                 </li>
               ))}
             </ul>

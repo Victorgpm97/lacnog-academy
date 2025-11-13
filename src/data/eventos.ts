@@ -51,7 +51,7 @@ export const eventos: Evento[] = [
       {
         nombre: "Grant Kard",
         rol: "Co-founder, DeepStation",
-        foto: "/images/grant-kard.jpg",
+        foto: "/img/1.png",
         bio: "Ingeniero de sistemas con más de 10 años de experiencia en arquitectura de IA empresarial. Cofundador de DeepStation, enfocado en escalar soluciones éticas y sostenibles.",
         redes: {
           linkedin: "https://linkedin.com/in/grantkard",
@@ -61,7 +61,7 @@ export const eventos: Evento[] = [
       {
         nombre: "Mehdi Zahid",
         rol: "Co-founder, DeepStation",
-        foto: "/images/mehdi-zahid.jpg",
+        foto: "/img/2.png",
         bio: "Especialista en pensamiento sistémico aplicado a inteligencia artificial. Ha liderado proyectos de transformación digital en América Latina y Europa.",
         redes: {
           linkedin: "https://linkedin.com/in/mehdizahid",
@@ -90,7 +90,7 @@ export const eventos: Evento[] = [
       {
         nombre: "Carlos Méndez",
         rol: "Systems Architect, DeepStation",
-        foto: "/images/carlos-mendez.jpg",
+        foto: "/img/3.png",
         bio: "Arquitecto de sistemas con enfoque en agentes inteligentes distribuidos. Ha colaborado con OpenAI en el desarrollo de SDKs para entornos multi-agente.",
         redes: {
           github: "https://github.com/carlosmendez",
@@ -100,7 +100,7 @@ export const eventos: Evento[] = [
       {
         nombre: "Valentina Ortega",
         rol: "UX Designer, Cognify",
-        foto: "/images/valentina-ortega.jpg",
+        foto: "/img/6.png",
         bio: "Diseñadora de experiencia de usuario especializada en interfaces conversacionales y sistemas de IA colaborativa. Cofundadora de Cognify.",
         redes: {
           twitter: "https://twitter.com/valentinaUX",
@@ -129,7 +129,7 @@ export const eventos: Evento[] = [
       {
         nombre: "Sofía Rivas",
         rol: "Ethics Lead, AI Global",
-        foto: "/images/sofia-rivas.jpg",
+        foto: "/img/7.png",
         bio: "Investigadora en ética de IA con enfoque en transparencia algorítmica y gobernanza digital. Ha publicado en conferencias internacionales sobre IA responsable.",
         redes: {
           linkedin: "https://linkedin.com/in/sofiarivas"
@@ -138,7 +138,7 @@ export const eventos: Evento[] = [
       {
         nombre: "Tomás Herrera",
         rol: "CTO, NeuralScale",
-        foto: "/images/tomas-herrera.jpg",
+        foto: "/img/4.png",
         bio: "CTO de NeuralScale, experto en escalabilidad de modelos de lenguaje y arquitecturas distribuidas. Lidera equipos de innovación en IA aplicada.",
         redes: {
           github: "https://github.com/tomasherrera"
@@ -166,7 +166,7 @@ export const eventos: Evento[] = [
       {
         nombre: "Lucía Fernández",
         rol: "AI Researcher, OpenAI",
-        foto: "/images/lucia-fernandez.jpg",
+        foto: "/img/8.png",
         bio: "Investigadora en OpenAI con especialización en alineación de modelos y mitigación de sesgos. Ha trabajado en proyectos de IA explicable y seguridad algorítmica.",
         redes: {
           linkedin: "https://linkedin.com/in/luciafernandez"
@@ -175,7 +175,7 @@ export const eventos: Evento[] = [
       {
         nombre: "Julián Torres",
         rol: "Data Strategist, MindMesh",
-        foto: "/images/julian-torres.jpg",
+        foto: "/img/5.png",
         bio: "Estratega de datos con experiencia en ética de datos, privacidad y diseño de políticas de IA. Colabora con ONGs en regulación tecnológica.",
         redes: {
           web: "https://juliantorres.ai"
@@ -203,7 +203,7 @@ export const eventos: Evento[] = [
       {
         nombre: "Lucía Fernández",
         rol: "AI Researcher, OpenAI",
-        foto: "/images/lucia-fernandez.jpg",
+        foto: "/img/8.png",
         bio: "Investigadora en OpenAI con especialización en alineación de modelos y mitigación de sesgos. Ha trabajado en proyectos de IA explicable y seguridad algorítmica.",
         redes: {
           linkedin: "https://linkedin.com/in/luciafernandez"
@@ -212,7 +212,7 @@ export const eventos: Evento[] = [
       {
         nombre: "Carlos Méndez",
         rol: "Systems Architect, DeepStation",
-        foto: "/images/carlos-mendez.jpg",
+        foto: "/img/3.png",
         bio: "Arquitecto de sistemas con enfoque en agentes inteligentes distribuidos. Ha colaborado con OpenAI en el desarrollo de SDKs para entornos multi-agente.",
         redes: {
           github: "https://github.com/carlosmendez",
@@ -241,7 +241,7 @@ export const eventos: Evento[] = [
       {
         nombre: "Valentina Ortega",
         rol: "UX Designer, Cognify",
-        foto: "/images/valentina-ortega.jpg",
+        foto: "/img/6.png",
         bio: "Diseñadora de experiencia de usuario especializada en interfaces conversacionales y sistemas de IA colaborativa. Cofundadora de Cognify, donde lidera el diseño de productos centrados en humanos para entornos inteligentes.",
         redes: {
           twitter: "https://twitter.com/valentinaUX",
@@ -252,7 +252,7 @@ export const eventos: Evento[] = [
       {
         nombre: "Mehdi Zahid",
         rol: "Co-founder, DeepStation",
-        foto: "/images/mehdi-zahid.jpg",
+        foto: "/img/2.png",
         bio: "Especialista en pensamiento sistémico aplicado a inteligencia artificial. Ha liderado proyectos de transformación digital en América Latina y Europa, y es cofundador de DeepStation.",
         redes: {
           linkedin: "https://linkedin.com/in/mehdizahid",
