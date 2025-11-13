@@ -133,3 +133,36 @@ export const temaMetadata: Record<number, { titulo: string; subtitulo: string; m
     prerequisitos: "Modulo 2,Unicode searching. SQL."
   },
 };
+
+export const temaMetadataEstudiante: Record<number, { modulo: string; titulo: string; subtitulo: string, prerequisitos: string, tiempo: string }> = {
+  1: {
+    modulo: "Módulo 1",
+    titulo: "Instructor Guide for Unicode Basics",
+    subtitulo: "Provide the basic understanding of Unicode and its applications.",
+    prerequisitos:"",
+    tiempo:""
+  },
+  2: {
+    modulo: "Módulo 2",
+    titulo: "Unicode Advanced Programming",
+    subtitulo: "Designed to expand your understanding and proficiency in working with Unicode by covering key aspects such as the character-glyph model, Unicode normalization, accessing the Unicode character database, and comparing Unicode strings.",
+    prerequisitos:"",
+    tiempo:""
+  },
+  3: {
+    modulo: "Módulo 3",
+    titulo: "Unicode in Data Structures and Algorithms",
+    subtitulo: "Comprehensive introduction to leveraging the power of Unicode in data structures and algorithms",
+    prerequisitos:"",
+    tiempo:""
+  },
+  4: {
+    modulo: "Módulo 4",
+    titulo: "Unicode in Database Systems",
+    subtitulo: "Concise introduction to the essential concepts and considerations when working with Unicode character data in the context of database systems",
+    prerequisitos:"",
+    tiempo:""
+  },
+};
+
+

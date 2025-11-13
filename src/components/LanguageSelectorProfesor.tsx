@@ -3,44 +3,11 @@ import CourseView from "../components/CourseView";
 import TemaView from "../components/TemaView";
 import ModalRolSelector from "./ModalRolSelector";
 //import PrepararTemaView from "./PrepararTemaView";
-import { temas } from "../data/temas";
+import { temas, temaMetadata, temaMetadataEstudiante } from "../data/temas";
 import Lacnog from "../logos/Logo-LACNOG-1-300x154.png";
 import ProfesorIntroCard from "../components/tutoria/ProfesorIntroCard";
 
-// Metadatos de cada módulo
-const temaMetadata: Record<number, { titulo: string; subtitulo: string; modulo: string, tiempo: string, prerequisitos: string }> = {
-  1: {
-    modulo: "Modulo 1",
-    titulo: "Instructor Guide for Unicode Basics",
-    subtitulo: "Provide the basic understanding of Unicode and its applications.",
-    tiempo: "180 min",
-    prerequisitos: "Data types and data representations. ASCII encoding. ASCII input and output. ASCII files."
-  },
-  2: {
-    modulo: "Modulo 2",
-    titulo: "Unicode Advanced Programming",
-    subtitulo:
-      "Designed to expand your understanding and proficiency in working with Unicode by covering key aspects such as the character-glyph model, Unicode normalization, accessing the Unicode character database, and comparing Unicode strings.",
-    tiempo: "300 min",
-    prerequisitos: "Module 1, Advanced/ Object OrientedProgramming."
-  },
-  3: {
-    modulo: "Modulo 3",
-    titulo: "Unicode in Data Structures and Algorithms",
-    subtitulo:
-      "Comprehensive introduction to leveraging the power of Unicode in data structures and algorithms.",
-    tiempo: "180 min",
-    prerequisitos: "Modulo 2, Arrays, Lists, Sets, Queues, Trees, Dictionaries, etc., Sorting and Searching."
-  },
-  4: {
-    modulo: "Modulo 4",
-    titulo: "Unicode in Database Systems",
-    subtitulo:
-      "Concise introduction to the essential concepts and considerations when working with Unicode character data in the context of database systems.",
-    tiempo: "120 min",
-    prerequisitos: "Modulo 2,Unicode searching. SQL."
-  },
-};
+
 
 export default function LanguageSelector() {
   const [role, setRole] = useState<"profesor" | "estudiante" | null>(null);
@@ -122,6 +89,9 @@ export default function LanguageSelector() {
     return <ProfesorIntroCard onBack={() => setMostrarIntroProfesor(false)} />;
   }
 
+    // Seleccionar metadatos según rol
+  const metadata = role === "profesor" ? temaMetadata : temaMetadataEstudiante;
+
 
   return (
     <>
@@ -179,7 +149,7 @@ export default function LanguageSelector() {
               onClick={() => setMostrarIntroProfesor(true)}
               className="bg-[#FEA723] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#FE9E1B] hover:scale-102 transition-transform duration-300 cursor-pointer"
             >
-              Ver más
+              Ver - Introducción para profesores
             </button>
           </div>
         </div>
@@ -190,26 +160,24 @@ export default function LanguageSelector() {
           <div className="bg-orange-200 rounded-lg shadow-sm mt-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
               {temasDisponibles.map((tema) => {
-                const meta = temaMetadata[tema];
-                let titulo = meta?.titulo || `Tema ${tema}`;
-                let subtitulo =
-                  meta?.subtitulo ||
-                  "Reglas conceptuales fundamentales y desarrollo e implementación de procesos de aprendizaje.";
-                let tiempo = meta?.tiempo || "No hay tiempo";
-                let prerequisitos = meta?.prerequisitos || "No hay pre-requisitos";
-                let modulo = meta?.modulo;
+                const meta = metadata[tema];
+                const titulo = meta?.titulo || `Tema ${tema}`;
+                const subtitulo = meta?.subtitulo || "No hay subtítulos.";
+                const tiempo = meta?.tiempo || "No hay tiempo";
+                const prerequisitos = meta?.prerequisitos || "No hay pre-requisitos";
+                const modulo = meta?.modulo;
 
                 return (
                   <div
                     key={tema}
                     className="bg-amber-50 rounded-lg p-4 flex flex-col justify-between hover:scale-102 -translate-y-1 transition-transform animate-slide-up duration-300 cursor-pointer"
                   >
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center">{modulo} - <span>{titulo}</span></h3>
-                    <p className="text-sm text-gray-600 mb-2">{subtitulo}</p>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center">{titulo}</h3>
+                    <p className="text-sm text-gray-600 mb-2 font-light">{subtitulo}</p>
                     {role === "profesor" && (
                       <>
                         <p className="text-sm text-gray-600 mb-1 font-semibold">Tiempo Estimado: <span className="text-blue-500 font-bold">{tiempo}</span></p>
-                        <p className="font-light">{prerequisitos}</p>
+                        <p className="font-light text-sm py-2">{prerequisitos}</p>
                       </>
                     )}
                     <button
@@ -225,16 +193,6 @@ export default function LanguageSelector() {
           </div>
         ) : (
           <div className="text-center text-gray-500 mt-6">Cargando rol…</div>
-        )}
-
-        {/* Botón Agregar Tema (solo profesor) */}
-        {role === "profesor" && (
-          <button
-            onClick={handleAgregarTema}
-            className="text-[#FEA723] px-6 py-2 mt-6 rounded-md font-medium hover:text-[#FE9E1B] transition cursor-pointer hidden"
-          >
-            + Agregar Tema
-          </button>
         )}
       </div>
     <footer className="bg-[#323232] text-white py-12 px-4 sm:px-6 lg:px-8">
