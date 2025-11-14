@@ -113,7 +113,6 @@ export default function CrearNoticia() {
                   type="button"
                   onClick={() => }
                   className={`px-3 py-1 rounded-full border transition text-sm cursor-pointer ${
-                    isSelected
                       ? "bg-black text-white border-black hover:bg-black"
                       : "bg-gray-100 text-gray-800 border-gray-300 hover:bg-gray-200"
                   }`}
