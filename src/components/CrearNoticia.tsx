@@ -8,14 +8,6 @@ export default function CrearNoticia() {
   const [preview, setPreview] = useState<string | null>(null);
   
 
-    const TAG_OPTIONS = [
-    "#Terms",
-    "#Privacy Policy",
-    "#Intellectual Property Policy",
-    "#Ethics and Compliance",
-    "#Cookie Policy",
-  ];
-
   const handleImagen = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
     setImagen(file);
