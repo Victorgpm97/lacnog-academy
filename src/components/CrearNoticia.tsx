@@ -5,6 +5,20 @@ export default function CrearNoticia() {
   const [contenido, setContenido] = useState("");
   const [imagen, setImagen] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
+  const [tags, setTags] = useState("");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  
+  const toggleTag = (tag: string) => { 
+    setSelectedTags((prev) => prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag] );
+  };
+
+    const TAG_OPTIONS = [
+    "#Terms",
+    "#Privacy Policy",
+    "#Intellectual Property Policy",
+    "#Ethics and Compliance",
+    "#Cookie Policy",
+  ];
 
   const handleImagen = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
@@ -42,9 +56,42 @@ export default function CrearNoticia() {
             ← Volver Atrás
           </a>
       <form onSubmit={handleSubmit} className="bg-white border border-gray-200 rounded-xl p-6 shadow-md space-y-6">
+        {/* Título */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Título:</label>
+          <input
+            type="text"
+            value={titulo}
+            onChange={(e) => setTitulo(e.target.value)}
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#FE9E1B]"
+            required
+          />
+        </div>
+
+        {/* Contenido */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Resumen:</label>
+          <textarea
+            value={contenido}
+            onChange={(e) => setContenido(e.target.value)}
+            rows={8}
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#FE9E1B]"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Contenido:</label>
+          <textarea
+              value={articulo}
+              onChange={(e) => setArticulo(e.target.value)}
+              placeholder="Contenido completo"
+              className="w-full border p-2 rounded bg-white h-20"
+              required
+            />
+        </div>
         {/* Imagen destacada */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Imagen destacada</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Imagen destacada:</label>
           <input
             type="file"
             accept="image/*"
@@ -60,28 +107,27 @@ export default function CrearNoticia() {
           )}
         </div>
 
-        {/* Título */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Título</label>
-          <input
-            type="text"
-            value={titulo}
-            onChange={(e) => setTitulo(e.target.value)}
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#FE9E1B]"
-            required
-          />
-        </div>
-
-        {/* Contenido */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Contenido</label>
-          <textarea
-            value={contenido}
-            onChange={(e) => setContenido(e.target.value)}
-            rows={8}
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#FE9E1B]"
-            required
-          />
+        <div className="space-y-2">
+          <h3 className="font-semibold">Etiquetas:</h3>
+          <div className="flex flex-wrap gap-2">
+            {TAG_OPTIONS.map((tag) => {
+              const isSelected = selectedTags.includes(tag);
+              return (
+                <button
+                  key={tag}
+                  type="button"
+                  onClick={() => toggleTag(tag)}
+                  className={`px-3 py-1 rounded-full border transition text-sm cursor-pointer ${
+                    isSelected
+                      ? "bg-black text-white border-black hover:bg-black"
+                      : "bg-gray-100 text-gray-800 border-gray-300 hover:bg-gray-200"
+                  }`}
+                >
+                  #{tag}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Botón enviar */}
