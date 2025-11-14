@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 export default function CrearNoticia() {
   const [titulo, setTitulo] = useState("");
-  const [contenido, setContenido] = useState("");
+  const [resumen, setResumen] = useState("");
+  const [articulo, setArticulo] = useState("");
   const [imagen, setImagen] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
-  const [tags, setTags] = useState("");
   
 
     const TAG_OPTIONS = [
@@ -69,14 +69,14 @@ export default function CrearNoticia() {
           <label className="block text-sm font-medium text-gray-700 mb-1">Resumen:</label>
           <textarea
             value={contenido}
-            onChange={(e) => setContenido(e.target.value)}
+            onChange={(e) => setResumen(e.target.value)}
             rows={8}
             className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#FE9E1B]"
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Contenido:</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Articulo:</label>
           <textarea
               value={articulo}
               onChange={(e) => setArticulo(e.target.value)}
@@ -101,27 +101,6 @@ export default function CrearNoticia() {
               className="mt-4 rounded-lg border border-gray-300 w-full object-cover max-h-64"
             />
           )}
-        </div>
-
-        <div className="space-y-2">
-          <h3 className="font-semibold">Etiquetas:</h3>
-          <div className="flex flex-wrap gap-2">
-            {TAG_OPTIONS.map((tag) => {
-              return (
-                <button
-                  key={tag}
-                  type="button"
-                  onClick={() => }
-                  className={`px-3 py-1 rounded-full border transition text-sm cursor-pointer ${
-                      ? "bg-black text-white border-black hover:bg-black"
-                      : "bg-gray-100 text-gray-800 border-gray-300 hover:bg-gray-200"
-                  }`}
-                >
-                  #{tag}
-                </button>
-              );
-            })}
-          </div>
         </div>
 
         {/* Botón enviar */}
