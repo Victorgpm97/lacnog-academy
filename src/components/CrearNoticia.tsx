@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 export default function CrearNoticia() {
   const [titulo, setTitulo] = useState("");
-  const [resumen, setResumen] = useState("");
+  const [contenido, setContenido] = useState("");
   const [articulo, setArticulo] = useState("");
   const [imagen, setImagen] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -61,7 +61,7 @@ export default function CrearNoticia() {
           <label className="block text-sm font-medium text-gray-700 mb-1">Resumen:</label>
           <textarea
             value={contenido}
-            onChange={(e) => setResumen(e.target.value)}
+            onChange={(e) => setContenido(e.target.value)}
             rows={8}
             className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#FE9E1B]"
             required
