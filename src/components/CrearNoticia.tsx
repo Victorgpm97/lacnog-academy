@@ -6,11 +6,7 @@ export default function CrearNoticia() {
   const [imagen, setImagen] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [tags, setTags] = useState("");
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   
-  const toggleTag = (tag: string) => { 
-    setSelectedTags((prev) => prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag] );
-  };
 
     const TAG_OPTIONS = [
     "#Terms",
@@ -111,12 +107,11 @@ export default function CrearNoticia() {
           <h3 className="font-semibold">Etiquetas:</h3>
           <div className="flex flex-wrap gap-2">
             {TAG_OPTIONS.map((tag) => {
-              const isSelected = selectedTags.includes(tag);
               return (
                 <button
                   key={tag}
                   type="button"
-                  onClick={() => toggleTag(tag)}
+                  onClick={() => }
                   className={`px-3 py-1 rounded-full border transition text-sm cursor-pointer ${
                     isSelected
                       ? "bg-black text-white border-black hover:bg-black"
