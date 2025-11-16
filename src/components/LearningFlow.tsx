@@ -76,8 +76,8 @@ export default function LearningFlow() {
           <AreaSelector onSelect={handleAreaSelect} />
         </section>
       )}
-
-      {step === "language" && selectedArea && (
+      <div className="hidden">
+        {step === "language" && selectedArea && (
         <section className="space-y-6">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
@@ -102,6 +102,8 @@ export default function LearningFlow() {
           <LanguageSelector />
         </section>
       )}
+      </div>
+      
     </div>
   );
 }

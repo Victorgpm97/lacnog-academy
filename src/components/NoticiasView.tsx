@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import FeaturedSection from "../components/FeaturedSection";
+import { XataClient } from "../xata"
+import CrearNoticia from "./CrearNoticia";
 
 const DashboardPage: React.FC = () => {
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [userRole, setUserRole] = useState<string | null>(null);
+  const [article, setArticle] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedRole = localStorage.getItem("userRole");
-    setUserRole(storedRole);
+    const role = localStorage.getItem("userRole");
+    setUserRole(role);
   }, []);
 
   const articles = [
@@ -97,14 +101,12 @@ const DashboardPage: React.FC = () => {
         <section className="w-full py-12 px-6">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl font-bold text-[#FE9E1B]">Noticias</h2>
-            {userRole === "profesor" && (
-              <a
-                href="/crear-noticias"
-                className="bg-[#FE9E1B] text-white px-4 py-2 rounded hover:bg-[#FEA723] transition text-sm font-medium"
-              >
-                Crear Nueva Noticia
-              </a>
-            )}
+              {userRole === "profesor" && (
+                <a href="/create-new"
+                  className="bg-[#FE9E1B] text-white px-4 py-2 rounded hover:bg-[#FEA723] transition text-sm font-medium">
+                  Crear Nueva Noticia
+                </a>
+              )}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredArticles.map((article) => (

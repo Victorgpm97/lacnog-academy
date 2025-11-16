@@ -101,7 +101,7 @@ export default function AreaSelector({ onSelect }: Props) {
             </h3>
             <p className="text-gray-600 leading-relaxed">{area.description}</p>
             <button
-              className="inline-flex items-center gap-2 text-[#4E5059] group-hover:text-[#FE9E1B] font-medium group-hover:gap-3 transition-all duration-200"
+              className="items-center gap-2 text-[#4E5059] group-hover:text-[#FE9E1B] font-medium group-hover:gap-3 transition-all duration-200 hidden"
             >
               Explorar ruta <ChevronDown size={16} />
             </button>

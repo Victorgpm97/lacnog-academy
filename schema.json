@@ -1,0 +1,14 @@
+{
+  "tables": [
+    {
+      "name": "noticias",
+      "columns": [
+        { "name": "titulo", "type": "text" },
+        { "name": "resumen", "type": "text" },
+        { "name": "contenido", "type": "text" },
+        { "name": "imagen", "type": "link" },
+        { "name": "tags", "type": "text[]" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Victorgpm97-s-workspace-34ecvd.us-east-1.xata.sh/db/lacnog-academy:main",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}

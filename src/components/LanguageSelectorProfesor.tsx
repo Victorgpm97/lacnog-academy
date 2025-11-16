@@ -181,7 +181,6 @@ export default function LanguageSelector() {
                       </>
                     )}
                     <button
-                      onClick={() => handleTemaClick(tema)}
                       className="bg-[#FEA723] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#FE9E1B] hover:scale-102 transition-transform duration-300 cursor-pointer"
                     >
                       Ver detalles
